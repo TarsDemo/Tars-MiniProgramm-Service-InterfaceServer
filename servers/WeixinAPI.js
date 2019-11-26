@@ -1,23 +1,18 @@
 const request    = require('request');
 const util       = require('util');
 const DataHandle = require('../tools/util').DataHandle;
-const ErrorCode  = require("../proxy/ServerStatusTars").LifeService.ErrorCode;
+const appConf    = require('../config/appConf');
 
 const WeixinAPI = {};
 
 // Promise化, 使request能够同步调用
 const getPromise = util.promisify(request.get);
 
-// 获取微信OpenId
 WeixinAPI.getOpenId = async (ctx) => {
-    let {
-        appid,
-        secret,
-        js_code,
-    } = ctx.query;
+    let {js_code} = ctx.query;
 
-    let params = 'appid=' + appid +
-               '&secret=' + secret + 
+    let params = 'appid=' + appConf.app_id +
+               '&secret=' + appConf.app_secret + 
               '&js_code=' + js_code + 
               '&grant_type=authorization_code';
 
@@ -30,7 +25,7 @@ WeixinAPI.getOpenId = async (ctx) => {
     }
     catch(e) {
         console.error(e);
-        ctx.body = DataHandle.returnError(ErrorCode.SERVERERROR, e.message);
+        ctx.body = DataHandle.returnError('400', e.message);
     }
 };
 

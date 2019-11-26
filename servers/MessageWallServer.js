@@ -2,9 +2,9 @@ const Tars = require("@tars/rpc").client;
 
 const MessageWallPrx = require("../proxy/MessageWallProxy").LifeService.MessageWallProxy;
 const DataServiceTars = require("../proxy/DataServiceTars");
-const ErrorCode       = require("../proxy/ServerStatusTars").LifeService.ErrorCode;
 
 const messageWallObjName = "LifeService.MessageWallServer.MessageWallObj";
+
 const DataHandle = require("../tools/util").DataHandle;
 
 const MessageWallServer = {};
@@ -27,11 +27,13 @@ MessageWallServer.postMessage = async (ctx) => {
 
     try {
         const prx = Tars.stringToProxy(MessageWallPrx, messageWallObjName);
+
         await prx.PostMessage(message);
-        ctx.body = DataHandle.returnData(ErrorCode.SUCCESS);
+
+        ctx.body = DataHandle.returnData(200, 'success');
     }
     catch(e){
-        ctx.body = DataHandle.returnError(ErrorCode.SERVERERROR, e.message);
+        ctx.body = DataHandle.returnError(400, e.message);
     }
 };
 
@@ -44,14 +46,16 @@ MessageWallServer.getMessageList = async (ctx) => {
 
     try {
         const prx = Tars.stringToProxy(MessageWallPrx, messageWallObjName);
+
         let result = await prx.GetMessageList(index, date, wx_id);
-        ctx.body = DataHandle.returnData(ErrorCode.SUCCESS, {
+
+        ctx.body = DataHandle.returnData(200, 'success', {
             'next_index': result.response.arguments.NextIndex,
             'message_list': result.response.arguments.MsgList.toObject(),
         });
     }
     catch(e) {
-        ctx.body = DataHandle.returnError(ErrorCode.SERVERERROR, e.message);
+        ctx.body = DataHandle.returnError(400, e.message);
     }
 };
 
@@ -60,11 +64,13 @@ MessageWallServer.addLike = async (ctx) => {
 
     try {
         const prx = Tars.stringToProxy(MessageWallPrx, messageWallObjName);
-        await prx.AddLike(message_id);
-        ctx.body = DataHandle.returnData(ErrorCode.SUCCESS);
+
+        let result = await prx.AddLike(message_id);
+
+        ctx.body = DataHandle.returnData(result.response.return, 'success');
     }
     catch(e) {
-        ctx.body = DataHandle.returnError(ErrorCode.SERVERERROR, e.message);
+        ctx.body = DataHandle.returnError(400, e.message);
     }
 };
 
@@ -73,13 +79,15 @@ MessageWallServer.getLike = async (ctx) => {
 
     try {
         const prx = Tars.stringToProxy(MessageWallPrx, messageWallObjName);
+
         let result = await prx.GetLike(message_id);
-        ctx.body = DataHandle.returnData(ErrorCode.SUCCESS, {
+
+        ctx.body = DataHandle.returnData(200, 'success', {
             'like_count': result.response.arguments.LikeCount,
         });
     }
     catch(e) {
-        ctx.body = DataHandle.returnError(ErrorCode.SERVERERROR, e.message);
+        ctx.body = DataHandle.returnError(400, e.message);
     }
 };
 
