@@ -41,7 +41,7 @@ InterfaceServer
 
 将项目clone到任意目录下，修改`config/appConf.js`配置模块中的服务器证书和密钥路径为自己的证书和密钥路。
 ```sh
-git clone https://github.com/TarsDemo/Tars-MiniProgramm-Service-InterfaceServer.git InterfaceServer
+git clone -b release https://github.com/TarsDemo/Tars-MiniProgramm-Service-InterfaceServer.git InterfaceServer
 cd InterfaceServer
 ```
 进入项目下proxy目录，将tars协议文件转换为对应的js文件
