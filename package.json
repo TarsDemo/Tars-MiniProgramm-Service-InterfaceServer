@@ -1,0 +1,26 @@
+{
+  "name": "InterfaceServer",
+  "version": "1.0.0",
+  "description": "Description",
+  "main": "app.js",
+  "dependencies": {
+    "@tars/config": "^2.0.3",
+    "@tars/logs": "^2.1.0",
+    "@tars/rpc": "^2.0.10",
+    "@tars/stream": "^2.0.1",
+    "@tars/utils": "^2.0.0",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "koa": "^2.8.1",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "private": true
+}
