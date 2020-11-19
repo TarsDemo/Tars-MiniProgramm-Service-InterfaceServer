@@ -1,5 +1,7 @@
 # InterfaceServer
 
+[中文版](README.md)
+
 This service is the proxy layer of miniprogram LifeService's backend, which is the 
 
 For server interface, see [API Document](docs/API.md)。

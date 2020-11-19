@@ -1,5 +1,7 @@
 # InterfaceServer
 
+[English Version](README_en.md)
+
 大学生活服务平台-接入层，为小程序提供服务接入。
 
 服务接口可查看[接口文档](docs/API.md)。
@@ -9,12 +11,11 @@
 InterfaceServer
 ├── app.js                       # 入口文件
 ├── README.md
-├── API.md                       # 接口文档
+├── README_en.md
+├── docs                         # 文档资源
 ├── config                       # 配置模块目录
 │   └── appConf.js
-├── node_modules                 # npm包安装目录
 ├── package.json
-├── package-lock.json
 ├── proxy                        # tars文件及其生成代理文件存放目录
 │   ├── DataService.tars
 │   ├── ServerStatus.tars
